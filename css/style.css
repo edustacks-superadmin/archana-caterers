@@ -1118,12 +1118,18 @@ p, span, h1, h2, h3, h4, h5, h6, a, li {
   flex-wrap: wrap;
 }
 .menu-footer-actions .btn-outline-gold {
-  color: #FFF;
-  border-color: var(--secondary);
+  background: var(--gold-gradient);
+  color: #1E2229 !important;
+  border: 2px solid var(--secondary);
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(245, 166, 35, 0.35);
 }
 .menu-footer-actions .btn-outline-gold:hover {
-  background-color: var(--secondary);
-  color: #1E2229;
+  background: #FFFFFF;
+  color: var(--primary-dark) !important;
+  border-color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
 }
 
 /* ==========================================================================
