@@ -974,30 +974,31 @@ p, span, h1, h2, h3, h4, h5, h6, a, li {
 /* Category Tabs */
 .menu-category-tabs {
   display: flex;
-  overflow-x: auto;
-  gap: 8px;
-  padding-bottom: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 12px;
+  padding: 6px 0 10px 0;
   margin-bottom: 34px;
-  scrollbar-width: thin;
-}
-.menu-category-tabs::-webkit-scrollbar {
-  height: 5px;
-}
-.menu-category-tabs::-webkit-scrollbar-thumb {
-  background-color: var(--border-color);
-  border-radius: 10px;
+  width: 100%;
 }
 .cat-tab {
-  padding: 9px 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 20px;
   background: #FFF;
   border: 1px solid var(--border-color);
-  border-radius: 20px;
+  border-radius: 30px;
   font-size: 0.88rem;
   font-weight: 500;
   color: var(--text-dark);
   cursor: pointer;
-  white-space: nowrap;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  min-width: max-content !important;
   transition: var(--transition);
+  user-select: none;
 }
 .cat-tab:hover {
   border-color: var(--secondary);
@@ -2638,9 +2639,74 @@ p, span, h1, h2, h3, h4, h5, h6, a, li {
   .testimonials-grid { grid-template-columns: minmax(0, 1fr); }
   .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .menu-items-grid { grid-template-columns: minmax(0, 1fr); }
-  .menu-category-tabs {
-    max-width: 100%;
+  /* Menu Section Mobile Optimization */
+  .menu-control-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 14px 12px;
+    margin-bottom: 20px;
     width: 100%;
+    box-sizing: border-box;
+  }
+  .diet-toggle-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    width: 100%;
+  }
+  .diet-btn {
+    width: 100%;
+    padding: 8px 4px !important;
+    font-size: 0.82rem !important;
+    white-space: nowrap !important;
+    justify-content: center !important;
+    text-align: center !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+  }
+  .diet-btn .veg-dot,
+  .diet-btn .non-veg-dot {
+    margin-right: 4px;
+    flex-shrink: 0;
+  }
+  .menu-search-box {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .menu-search-box input {
+    width: 100%;
+    font-size: 0.86rem;
+    padding: 10px 34px;
+    box-sizing: border-box;
+  }
+  .menu-category-tabs {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    padding: 4px 2px 14px 2px !important;
+    margin-bottom: 22px !important;
+    gap: 8px !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  .menu-category-tabs::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .cat-tab {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    min-width: max-content !important;
+    padding: 8px 16px !important;
+    font-size: 0.84rem !important;
+    border-radius: 25px !important;
   }
   .form-row {
     grid-template-columns: minmax(0, 1fr);
