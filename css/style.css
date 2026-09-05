@@ -303,52 +303,62 @@ button, input, select, textarea {
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  flex-shrink: 0;
 }
 .brand-logo-img {
-  width: 54px;
-  height: 54px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
+  flex-shrink: 0;
 }
 .brand-text {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 }
 .brand-title {
   font-family: var(--font-heading);
-  font-size: 1.55rem;
+  font-size: 1.45rem;
   font-weight: 700;
   color: var(--primary);
   line-height: 1.1;
   letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 .caterers-tag {
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   font-weight: 800;
   color: var(--text-dark);
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   margin-left: 4px;
 }
 .brand-tagline {
   font-family: var(--font-serif);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-style: italic;
   color: var(--secondary-dark);
   margin-top: 2px;
+  white-space: nowrap;
 }
 
 /* Nav Menu */
+.nav-menu {
+  display: flex;
+  align-items: center;
+}
 .nav-list {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 16px;
 }
 .nav-link {
-  font-weight: 500;
-  font-size: 0.95rem;
+  font-weight: 600;
+  font-size: 0.9rem;
   color: var(--text-dark);
-  padding: 6px 0;
+  padding: 6px 2px;
   position: relative;
+  white-space: nowrap !important; /* Prevents text from breaking into 2 lines */
 }
 .nav-link::after {
   content: '';
@@ -2404,8 +2414,8 @@ button, input, select, textarea {
   .menu-items-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 768px) {
-  /* Navigation Mobile View */
+@media (max-width: 1040px) {
+  /* Navigation Mobile & Tablet View */
   .mobile-toggle { display: flex; }
   .nav-menu {
     position: fixed;
@@ -2430,7 +2440,7 @@ button, input, select, textarea {
   }
   .nav-link { font-size: 1.05rem; }
   .nav-actions .nav-cta-btn { display: none; }
-  .dropdown-pdf { display: none; } /* Prevents overlapping logo on mobile */
+  .dropdown-pdf { display: none; } /* Prevents overlapping logo */
 
   .mobile-drawer-actions {
     display: flex;
@@ -2440,7 +2450,9 @@ button, input, select, textarea {
     padding-top: 18px;
     border-top: 1px solid var(--border-color);
   }
+}
 
+@media (max-width: 768px) {
   /* Top Bar Mobile Optimization - Single Clean Row */
   .top-bar {
     padding: 6px 0;
