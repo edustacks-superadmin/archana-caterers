@@ -369,11 +369,11 @@ p, span, h1, h2, h3, h4, h5, h6, a, li {
 .nav-list {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 .nav-link {
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--text-dark);
   padding: 6px 2px;
   position: relative;
@@ -400,7 +400,12 @@ p, span, h1, h2, h3, h4, h5, h6, a, li {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.nav-actions .btn {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
 }
 .dropdown-pdf {
   position: relative;
