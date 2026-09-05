@@ -1813,16 +1813,18 @@ p, span, h1, h2, h3, h4, h5, h6, a, li {
    TESTIMONIALS SECTION
    ========================================================================== */
 .testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 40px;
 }
 .testimonial-card {
+  width: 100%;
+  max-width: 750px;
   background: #FFF;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-color);
-  padding: 30px;
+  padding: 40px;
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
@@ -2736,7 +2738,6 @@ p, span, h1, h2, h3, h4, h5, h6, a, li {
   .enquiry-form-container {
     padding: 22px 14px;
   }
-  .testimonials-grid { grid-template-columns: minmax(0, 1fr); }
   .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .menu-items-grid { grid-template-columns: minmax(0, 1fr); }
   /* Menu Section Mobile Optimization */
