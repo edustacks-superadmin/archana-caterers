@@ -1343,6 +1343,16 @@ p, span, h1, h2, h3, h4, h5, h6, a, li {
   font-size: 0.78rem;
   color: var(--text-muted);
   margin-top: 6px;
+  padding: 0 4px;
+}
+.slider-ticks span {
+  cursor: pointer;
+  transition: color 0.15s ease, font-weight 0.15s ease;
+  user-select: none;
+}
+.slider-ticks span:hover {
+  color: var(--primary);
+  font-weight: 700;
 }
 
 /* Radio Cards Grid */

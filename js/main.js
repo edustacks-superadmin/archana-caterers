@@ -1038,10 +1038,41 @@ function initCostCalculator() {
     breakfast: { name: "Breakfast Tiffin Buffet", veg: 180, mixed: 220 }
   };
 
+  // Map 0-100 slider position to guest count matching tick labels
+  function sliderPosToGuests(pos) {
+    pos = parseFloat(pos);
+    if (isNaN(pos) || pos <= 0) return 50;
+    if (pos >= 100) return 2000;
+
+    if (pos <= 25) {
+      // 0% to 25% maps to 50 - 300 guests (10 guests per step)
+      return Math.round((50 + (pos / 25) * 250) / 10) * 10;
+    } else if (pos <= 50) {
+      // 25% to 50% maps to 300 - 500 guests
+      const raw = 300 + ((pos - 25) / 25) * 200;
+      return Math.round(raw / 10) * 10;
+    } else if (pos <= 75) {
+      // 50% to 75% maps to 500 - 1,000 guests
+      const raw = 500 + ((pos - 50) / 25) * 500;
+      return Math.round(raw / 25) * 25;
+    } else {
+      // 75% to 100% maps to 1,000 - 2,000+ guests
+      const raw = 1000 + ((pos - 75) / 25) * 1000;
+      return Math.round(raw / 50) * 50;
+    }
+  }
+
   function updateCalculation() {
-    const guests = parseInt(slider.value, 10);
-    guestDisplay.textContent = guests.toLocaleString("en-IN");
-    summaryGuests.textContent = `${guests.toLocaleString("en-IN")} Guests`;
+    const pos = parseFloat(slider.value);
+    const guests = sliderPosToGuests(pos);
+    const isMax = pos >= 100;
+    const displayText = isMax ? "2,000+" : guests.toLocaleString("en-IN");
+
+    guestDisplay.textContent = displayText;
+    summaryGuests.textContent = `${displayText} Guests`;
+
+    // Dynamic filled progress track
+    slider.style.background = `linear-gradient(to right, #8B1A1E 0%, #8B1A1E ${pos}%, #E2E8F0 ${pos}%, #E2E8F0 100%)`;
 
     // Active package
     let selectedPkg = "special";
@@ -1102,6 +1133,18 @@ function initCostCalculator() {
   // Slider change
   slider.addEventListener("input", updateCalculation);
 
+  // Clickable ticks to snap slider
+  const tickSpans = document.querySelectorAll(".slider-ticks span");
+  tickSpans.forEach((span) => {
+    span.addEventListener("click", () => {
+      const val = span.dataset.val;
+      if (val !== undefined) {
+        slider.value = val;
+        updateCalculation();
+      }
+    });
+  });
+
   // Radio button events
   pkgRadios.forEach((r) => r.addEventListener("change", updateCalculation));
   dietRadios.forEach((r) => r.addEventListener("change", updateCalculation));
@@ -1111,12 +1154,23 @@ function initCostCalculator() {
 
   // Package card quick-selection buttons from packages grid
   const externalSelectBtns = document.querySelectorAll(".select-pkg-btn");
+  const pkgToSliderPos = {
+    regular: 5,     // 100 guests
+    special: 25,    // 300 guests
+    grand: 50,      // 500 guests
+    royal: 75,      // 1,000 guests
+    breakfast: 5    // 100 guests
+  };
+
   externalSelectBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       const targetPkg = btn.dataset.pkg;
       const targetRadio = document.querySelector(`input[name='calcPackage'][value='${targetPkg}']`);
       if (targetRadio) {
         targetRadio.checked = true;
+        if (pkgToSliderPos[targetPkg] !== undefined) {
+          slider.value = pkgToSliderPos[targetPkg];
+        }
         updateCalculation();
         // Scroll smoothly to calculator
         document.getElementById("calculator").scrollIntoView({ behavior: "smooth" });
@@ -1126,14 +1180,16 @@ function initCostCalculator() {
 
   // Send calculated quote to WhatsApp
   sendCalcToWhatsappBtn.addEventListener("click", () => {
-    const guests = slider.value;
+    const pos = parseFloat(slider.value);
+    const guests = sliderPosToGuests(pos);
+    const guestText = pos >= 100 ? "2,000+" : `${guests.toLocaleString("en-IN")}`;
     const pkgName = summaryPkgName.textContent;
     const diet = summaryDiet.textContent;
     const addons = summaryAddons.textContent;
     const rate = calcPerPlateRate.textContent;
     const total = calcTotalRange.textContent;
 
-    const message = `Hello Ajith Kumar Keetha garu (Archana Caterers),%0A%0AI would like to book a catering quotation based on the website calculator:%0A%0A• *Package:* ${pkgName}%0A• *Guest Count:* ${guests} Guests%0A• *Dietary Type:* ${diet}%0A• *Add-ons:* ${addons}%0A• *Estimated Rate:* ₹${rate} per plate%0A• *Total Estimate:* ₹${total}%0A%0APlease let me know your availability and customized dish options. Thank you!`;
+    const message = `Hello Ajith Kumar Keetha garu (Archana Caterers),%0A%0AI would like to book a catering quotation based on the website calculator:%0A%0A• *Package:* ${pkgName}%0A• *Guest Count:* ${guestText} Guests%0A• *Dietary Type:* ${diet}%0A• *Add-ons:* ${addons}%0A• *Estimated Rate:* ₹${rate} per plate%0A• *Total Estimate:* ₹${total}%0A%0APlease let me know your availability and customized dish options. Thank you!`;
 
     const whatsappUrl = `https://wa.me/919849027131?text=${message}`;
     window.open(whatsappUrl, "_blank");
@@ -1141,7 +1197,7 @@ function initCostCalculator() {
 
   // Prefill detailed enquiry form
   prefillEnquiryBtn.addEventListener("click", () => {
-    const guests = slider.value;
+    const guests = sliderPosToGuests(slider.value);
     const guestInput = document.getElementById("formGuests");
     if (guestInput) guestInput.value = guests;
 

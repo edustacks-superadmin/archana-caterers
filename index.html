@@ -617,13 +617,13 @@
                   <label for="guestSlider"><strong>Expected Guest Count:</strong></label>
                   <span class="guest-display"><span id="guestCountVal">300</span> Guests</span>
                 </div>
-                <input type="range" id="guestSlider" min="50" max="2500" step="25" value="300" class="custom-slider" />
+                <input type="range" id="guestSlider" min="0" max="100" step="1" value="25" class="custom-slider" aria-label="Expected Guest Count Slider" />
                 <div class="slider-ticks">
-                  <span>50</span>
-                  <span>300</span>
-                  <span>500</span>
-                  <span>1,000</span>
-                  <span>2,000+</span>
+                  <span data-val="0" title="Click to select 50 guests">50</span>
+                  <span data-val="25" title="Click to select 300 guests">300</span>
+                  <span data-val="50" title="Click to select 500 guests">500</span>
+                  <span data-val="75" title="Click to select 1,000 guests">1,000</span>
+                  <span data-val="100" title="Click to select 2,000+ guests">2,000+</span>
                 </div>
               </div>
 
