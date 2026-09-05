@@ -1211,6 +1211,7 @@ p, span, h1, h2, h3, h4, h5, h6, a, li {
   padding: 4px 16px;
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(245, 166, 35, 0.4);
+  white-space: nowrap;
 }
 .package-header {
   padding: 28px 20px 18px;
