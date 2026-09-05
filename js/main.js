@@ -1605,7 +1605,6 @@ function initScrollProgress() {
     <circle class="ring-progress" cx="26" cy="26" r="24"
             stroke-dasharray="150.8" stroke-dashoffset="150.8"/>
   `;
-  btn.style.position = "relative";
   btn.appendChild(svg);
 
   const progressCircle = svg.querySelector(".ring-progress");
