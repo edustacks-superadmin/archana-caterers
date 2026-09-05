@@ -56,6 +56,9 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 body {
@@ -64,7 +67,16 @@ body {
   background-color: #FFFFFF;
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  position: relative;
   -webkit-font-smoothing: antialiased;
+}
+
+main {
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
 }
 
 img {
@@ -2315,34 +2327,47 @@ button, input, select, textarea {
   bottom: 0;
   left: 0;
   right: 0;
-  background: #FFF;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  background: #FFFFFF;
   box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
-  z-index: 998;
-  grid-template-columns: 1fr 1.3fr 1fr;
+  z-index: 9999;
   border-top: 1px solid var(--border-color);
+  padding: 0;
+  margin: 0;
 }
 .mobile-bar-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2px;
-  padding: 8px 4px;
-  font-size: 0.72rem;
+  padding: 9px 4px;
+  font-size: 0.74rem;
   font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
 }
 .mobile-bar-btn i {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
 }
 .call-btn {
   color: var(--primary);
+  background: #FFFFFF;
 }
 .whatsapp-btn {
+  flex: 1.25 1 0;
   background: var(--whatsapp-green);
-  color: #FFF !important;
+  color: #FFFFFF !important;
 }
 .calc-btn {
   color: var(--secondary-dark);
+  background: #FFFFFF;
 }
 
 /* Modal Backdrop & Box */
@@ -2538,20 +2563,46 @@ button, input, select, textarea {
   .services-grid { grid-template-columns: 1fr; }
   .stalls-grid { grid-template-columns: 1fr; }
   .packages-grid { grid-template-columns: 1fr; }
+  .calculator-grid {
+    grid-template-columns: 1fr;
+    padding: 20px 14px;
+    gap: 20px;
+  }
+  .calculator-header {
+    padding: 16px 14px;
+  }
+  .enquiry-card-wrapper {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .enquiry-form-container {
+    padding: 22px 14px;
+  }
   .testimonials-grid { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .menu-items-grid { grid-template-columns: 1fr; }
+  .menu-category-tabs {
+    max-width: 100%;
+    width: 100%;
+  }
   .form-row { grid-template-columns: 1fr; }
   .form-submit-group { grid-template-columns: 1fr; }
+  .form-submit-group .btn {
+    white-space: normal;
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 0.94rem;
+  }
   .radio-cards-grid { grid-template-columns: 1fr; }
   .addons-grid { grid-template-columns: 1fr; }
   .footer-container { grid-template-columns: 1fr; }
-  .mobile-sticky-bar { display: grid; }
-  body { padding-bottom: 56px; }
+  .mobile-sticky-bar { display: flex !important; }
+  body { padding-bottom: 60px; }
   .floating-whatsapp { bottom: 74px; right: 18px; width: 52px; height: 52px; font-size: 1.7rem; }
 }
 
 @media (max-width: 480px) {
+  .container { padding: 0 14px; }
   .gallery-grid { grid-template-columns: 1fr; }
   .hero-metrics { grid-template-columns: 1fr; }
   .hero-cta-group { flex-direction: column; }
