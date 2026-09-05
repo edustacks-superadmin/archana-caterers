@@ -98,6 +98,13 @@ ul {
 button, input, select, textarea {
   font-family: inherit;
   font-size: inherit;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+p, span, h1, h2, h3, h4, h5, h6, a, li {
+  overflow-wrap: break-word;
 }
 
 /* Container */
@@ -1934,20 +1941,31 @@ button, input, select, textarea {
   display: flex;
   align-items: flex-start;
   gap: 14px;
+  min-width: 0;
+  max-width: 100%;
 }
 .ch-item i {
   font-size: 1.2rem;
   color: var(--secondary);
   margin-top: 3px;
+  flex-shrink: 0;
 }
 .ch-item strong {
   display: block;
   font-size: 0.85rem;
   color: #CBD5E1;
 }
+.ch-item > div {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
 .ch-item a, .ch-item span {
   font-size: 0.95rem;
   color: #FFF;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .ch-item a:hover {
   color: var(--secondary);
@@ -1998,6 +2016,8 @@ button, input, select, textarea {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  min-width: 0;
+  max-width: 100%;
 }
 .form-group label {
   font-size: 0.85rem;
@@ -2423,20 +2443,21 @@ button, input, select, textarea {
 
 @media (max-width: 900px) {
   .hero-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     text-align: center;
   }
   .hero-subtitle { margin: 0 auto 30px; }
   .hero-cta-group { justify-content: center; }
-  .hero-metrics { grid-template-columns: repeat(2, 1fr); }
-  .about-grid { grid-template-columns: 1fr; }
+  .hero-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .about-grid { grid-template-columns: minmax(0, 1fr); }
   .about-image-collage { max-width: 500px; margin: 0 auto 30px; }
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
-  .stalls-grid { grid-template-columns: repeat(2, 1fr); }
-  .terms-grid { grid-template-columns: 1fr; }
-  .enquiry-card-wrapper { grid-template-columns: 1fr; }
-  .contact-cards-grid { grid-template-columns: 1fr; }
-  .menu-items-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stalls-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .terms-grid { grid-template-columns: minmax(0, 1fr); }
+  .enquiry-card-wrapper { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .contact-cards-grid { grid-template-columns: minmax(0, 1fr); }
+  .menu-items-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .calculator-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 1040px) {
@@ -2560,42 +2581,94 @@ button, input, select, textarea {
   .section-title { font-size: 1.95rem; }
   .hero-title { font-size: 2.1rem; }
   .hero-main-img { height: 320px; }
-  .services-grid { grid-template-columns: 1fr; }
-  .stalls-grid { grid-template-columns: 1fr; }
-  .packages-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: minmax(0, 1fr); }
+  .stalls-grid { grid-template-columns: minmax(0, 1fr); }
+  .packages-grid { grid-template-columns: minmax(0, 1fr); }
+  .calculator-wrapper {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
   .calculator-grid {
-    grid-template-columns: 1fr;
-    padding: 20px 14px;
-    gap: 20px;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 18px 12px;
+    gap: 18px;
   }
   .calculator-header {
     padding: 16px 14px;
   }
+  .calculator-grid > *,
+  .calc-inputs,
+  .calc-results-card {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
   .enquiry-card-wrapper {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 24px;
+    width: 100%;
+    max-width: 100%;
+  }
+  .enquiry-card-wrapper > * {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .enquiry-intro, .enquiry-form-container {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .enquiry-intro h2 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+  .enquiry-intro p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 20px;
   }
   .enquiry-form-container {
     padding: 22px 14px;
   }
-  .testimonials-grid { grid-template-columns: 1fr; }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .menu-items-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: minmax(0, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .menu-items-grid { grid-template-columns: minmax(0, 1fr); }
   .menu-category-tabs {
     max-width: 100%;
     width: 100%;
   }
-  .form-row { grid-template-columns: 1fr; }
-  .form-submit-group { grid-template-columns: 1fr; }
+  .form-row {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+  }
+  .form-group {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+  .form-group select,
+  .form-group input,
+  .form-group textarea {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .form-submit-group { grid-template-columns: minmax(0, 1fr); }
   .form-submit-group .btn {
     white-space: normal;
     text-align: center;
     padding: 12px 10px;
     font-size: 0.94rem;
   }
-  .radio-cards-grid { grid-template-columns: 1fr; }
-  .addons-grid { grid-template-columns: 1fr; }
-  .footer-container { grid-template-columns: 1fr; }
+  .radio-cards-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .addons-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .footer-container { grid-template-columns: minmax(0, 1fr); }
   .mobile-sticky-bar { display: flex !important; }
   body { padding-bottom: 60px; }
   .floating-whatsapp { bottom: 74px; right: 18px; width: 52px; height: 52px; font-size: 1.7rem; }
