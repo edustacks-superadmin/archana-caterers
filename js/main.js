@@ -813,6 +813,7 @@ const MENU_DATABASE = [
 // 2. DOM INITIALIZATION & STATE
 // ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
+  hidePreloader();
   initNavbar();
   initMenuExplorer();
   initCostCalculator();
@@ -820,6 +821,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initEnquiryForm();
   initPdfDropdown();
   initBackToTop();
+  initScrollReveal();
+  initTestimonialCarousel();
+  initScrollProgress();
 });
 
 // ==========================================================================
@@ -1457,5 +1461,161 @@ function initBackToTop() {
       top: 0,
       behavior: "smooth"
     });
+  });
+}
+
+// ==========================================================================
+// 8. PRELOADER
+// ==========================================================================
+function hidePreloader() {
+  const preloader = document.querySelector(".preloader");
+  if (!preloader) return;
+
+  // Fallback: hide after 3s even if load event doesn't fire
+  const fallbackTimeout = setTimeout(() => {
+    preloader.classList.add("hidden");
+  }, 3000);
+
+  window.addEventListener("load", () => {
+    clearTimeout(fallbackTimeout);
+    setTimeout(() => preloader.classList.add("hidden"), 300);
+  });
+}
+
+// ==========================================================================
+// 9. SCROLL REVEAL ANIMATIONS (IntersectionObserver)
+// ==========================================================================
+function initScrollReveal() {
+  // Add reveal class to key elements
+  const revealTargets = document.querySelectorAll(
+    ".section-header, .service-card, .about-stat, .metric-card, " +
+    ".package-card, .stall-card, .gallery-item, .terms-card, " +
+    ".footer-column, .google-rating-banner, .pdf-download-card, " +
+    ".about-image-collage, .about-text-content, .pillar-item"
+  );
+
+  revealTargets.forEach((el) => el.classList.add("reveal"));
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Stagger children slightly
+          const delay = entry.target.dataset.revealDelay || 0;
+          setTimeout(() => {
+            entry.target.classList.add("revealed");
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+  );
+
+  document.querySelectorAll(".reveal, .reveal-left, .reveal-right").forEach((el) => {
+    observer.observe(el);
+  });
+
+  // Add stagger delays to grid children
+  document.querySelectorAll(".services-grid .service-card, .stalls-grid .stall-card").forEach((card, i) => {
+    card.dataset.revealDelay = i * 100;
+  });
+}
+
+// ==========================================================================
+// 10. TESTIMONIAL AUTO-ROTATION CAROUSEL
+// ==========================================================================
+function initTestimonialCarousel() {
+  const cards = document.querySelectorAll(".testimonial-card");
+  if (cards.length <= 1) return;
+
+  const grid = document.querySelector(".testimonials-grid");
+  if (!grid) return;
+
+  let currentIndex = 0;
+  let interval;
+
+  // Create dot navigation
+  const dotNav = document.createElement("div");
+  dotNav.className = "testimonial-nav";
+  cards.forEach((_, i) => {
+    const dot = document.createElement("button");
+    dot.className = "testimonial-dot" + (i === 0 ? " active" : "");
+    dot.setAttribute("aria-label", `Show review ${i + 1}`);
+    dot.addEventListener("click", () => goTo(i));
+    dotNav.appendChild(dot);
+  });
+  grid.parentNode.insertBefore(dotNav, grid.nextSibling);
+
+  function showCard(index) {
+    cards.forEach((card, i) => {
+      if (i === index) {
+        card.style.display = "";
+        card.style.opacity = "1";
+        card.style.transform = "translateX(0)";
+      } else {
+        card.style.display = "none";
+        card.style.opacity = "0";
+        card.style.transform = "translateX(20px)";
+      }
+    });
+    dotNav.querySelectorAll(".testimonial-dot").forEach((dot, i) => {
+      dot.classList.toggle("active", i === index);
+    });
+  }
+
+  function goTo(index) {
+    currentIndex = index;
+    showCard(currentIndex);
+    resetInterval();
+  }
+
+  function next() {
+    currentIndex = (currentIndex + 1) % cards.length;
+    showCard(currentIndex);
+  }
+
+  function resetInterval() {
+    clearInterval(interval);
+    interval = setInterval(next, 5000);
+  }
+
+  // Show first card, hide others
+  showCard(0);
+  resetInterval();
+
+  // Pause on hover
+  grid.addEventListener("mouseenter", () => clearInterval(interval));
+  grid.addEventListener("mouseleave", resetInterval);
+}
+
+// ==========================================================================
+// 11. SCROLL PROGRESS INDICATOR (Ring on Back-to-Top Button)
+// ==========================================================================
+function initScrollProgress() {
+  const btn = document.getElementById("backToTopBtn");
+  if (!btn) return;
+
+  // Create SVG progress ring
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.classList.add("scroll-progress-ring");
+  svg.setAttribute("viewBox", "0 0 52 52");
+  svg.innerHTML = `
+    <circle class="ring-bg" cx="26" cy="26" r="24"/>
+    <circle class="ring-progress" cx="26" cy="26" r="24"
+            stroke-dasharray="150.8" stroke-dashoffset="150.8"/>
+  `;
+  btn.style.position = "relative";
+  btn.appendChild(svg);
+
+  const progressCircle = svg.querySelector(".ring-progress");
+  const circumference = 2 * Math.PI * 24; // ~150.8
+
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight > 0 ? scrollTop / docHeight : 0;
+    const offset = circumference - (scrollPercent * circumference);
+    progressCircle.style.strokeDashoffset = offset;
   });
 }

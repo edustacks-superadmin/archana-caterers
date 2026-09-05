@@ -46,6 +46,39 @@
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+/* PRELOADER */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: var(--primary-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.preloader-logo {
+  width: 80px;
+  height: 80px;
+  animation: preloaderPulse 1.2s ease-in-out infinite;
+}
+.preloader-text {
+  margin-top: 16px;
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  color: var(--secondary);
+  letter-spacing: 2px;
+}
+@keyframes preloaderPulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.12); opacity: 1; }
+}
+
 /* Base & Reset */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -2385,6 +2418,29 @@ p, span, h1, h2, h3, h4, h5, h6, a, li {
   color: #FFF;
 }
 
+/* Scroll Progress Ring */
+.scroll-progress-ring {
+  position: absolute;
+  inset: -3px;
+  width: calc(100% + 6px);
+  height: calc(100% + 6px);
+  pointer-events: none;
+}
+.scroll-progress-ring circle {
+  fill: none;
+  stroke-width: 3;
+}
+.scroll-progress-ring .ring-bg {
+  stroke: rgba(255,255,255,0.15);
+}
+.scroll-progress-ring .ring-progress {
+  stroke: var(--secondary);
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition: stroke-dashoffset 0.15s ease;
+}
+
 /* Mobile Sticky Bottom Bar */
 .mobile-sticky-bar {
   display: none;
@@ -2846,4 +2902,91 @@ p, span, h1, h2, h3, h4, h5, h6, a, li {
   .gallery-grid { grid-template-columns: 1fr; }
   .hero-cta-group { flex-direction: column; }
   .hero-cta-group .btn { width: 100%; }
+}
+
+/* ==========================================================================
+   SCROLL REVEAL ANIMATIONS
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Testimonial Carousel Nav Dots */
+.testimonial-nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+.testimonial-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--secondary);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease;
+}
+.testimonial-dot.active {
+  background: var(--secondary);
+}
+
+/* ==========================================================================
+   PRINT STYLESHEET
+   ========================================================================== */
+@media print {
+  .top-bar, .main-header, .mobile-sticky-bar,
+  .floating-whatsapp, .floating-back-top,
+  .hero-cta-group, .preloader,
+  .gallery-filter-bar, .google-rating-banner,
+  .lightbox-modal, .modal-backdrop,
+  .footer-bottom, .dropdown-pdf,
+  .testimonial-nav {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 12pt;
+  }
+  .section {
+    page-break-inside: avoid;
+    padding: 20px 0 !important;
+  }
+  .hero-section {
+    background: none !important;
+    min-height: auto !important;
+    padding: 30px 0 !important;
+  }
+  .hero-overlay { display: none !important; }
+  .hero-title, .hero-subtitle { color: #000 !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  img { max-width: 100% !important; }
+  .section-title { color: var(--primary) !important; }
+  .testimonial-card { display: block !important; opacity: 1 !important; transform: none !important; }
 }

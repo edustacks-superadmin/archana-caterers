@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found | Archana Caterers</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
+  <meta name="theme-color" content="#8B1A1E" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #8B1A1E;
+      --primary-dark: #580B0F;
+      --secondary: #F5A623;
+      --bg-cream: #FAF6EE;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-cream);
+      font-family: 'Outfit', sans-serif;
+      color: #1E2229;
+      text-align: center;
+      padding: 24px;
+    }
+    .error-logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+    .error-code {
+      font-family: 'Cinzel', serif;
+      font-size: 6rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .error-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+    .error-desc {
+      font-size: 1rem;
+      color: #667085;
+      max-width: 450px;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    .error-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #8B1A1E, #580B0F);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(88, 11, 15, 0.3);
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+    }
+    .brand-name {
+      margin-top: 48px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: #667085;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+  <img src="assets/images/archana_logo_emblem.png" alt="Archana Caterers" class="error-logo" />
+  <div class="error-code">404</div>
+  <h1 class="error-title">Page Not Found</h1>
+  <p class="error-desc">
+    Oops! The page you're looking for doesn't exist. But don't worry — our delicious catering menu is just one click away!
+  </p>
+  <div class="error-actions">
+    <a href="/" class="btn btn-primary">
+      <i class="fa-solid fa-house"></i> Go to Homepage
+    </a>
+    <a href="https://wa.me/919849027131?text=Hi%20Ajith%20garu,%20I%20would%20like%20to%20enquire%20about%20catering%20services." target="_blank" rel="noopener" class="btn btn-whatsapp">
+      <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+    </a>
+  </div>
+  <p class="brand-name">ARCHANA CATERERS</p>
+</body>
+</html>

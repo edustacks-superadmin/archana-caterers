@@ -8,11 +8,72 @@
   <meta name="description" content="Archana Caterers - Delicious food, unforgettable moments. Premier catering for Weddings, Receptions, Traditional Ceremonies, Corporate Events & Live Counters in Hyderabad & Secunderabad. Led by Ajith Kumar Keetha." />
   <meta name="keywords" content="Archana Caterers, Catering Services Hyderabad, Secunderabad Caterers, Wedding Catering, Telugu Pellillu Catering, Hyderabadi Dum Biryani, Ajith Kumar Keetha, Seethaphalmandi Caterers, Pure Veg Catering, Non Veg Catering" />
   
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
+  <meta name="theme-color" content="#8B1A1E" />
+
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Archana Caterers | Delicious Food, Unforgettable Moments" />
   <meta property="og:description" content="Authentic Telugu banquets, royal Hyderabadi biryanis, live counters, and multi-cuisine catering for weddings, receptions, and traditional celebrations." />
-  <meta property="og:image" content="assets/images/archana_logo_emblem.png" />
+  <meta property="og:image" content="https://archanacaterers.com/assets/images/archana_logo_emblem.png" />
+  <meta property="og:url" content="https://archanacaterers.com" />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Archana Caterers" />
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CateringService",
+    "name": "Archana Caterers",
+    "image": "https://archanacaterers.com/assets/images/archana_logo_emblem.png",
+    "url": "https://archanacaterers.com",
+    "telephone": "+919849027131",
+    "description": "Premium catering services for weddings, receptions, traditional ceremonies, corporate events and live food stalls in Hyderabad & Secunderabad.",
+    "priceRange": "₹₹-₹₹₹",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Seethaphalmandi",
+      "addressLocality": "Secunderabad",
+      "addressRegion": "Telangana",
+      "postalCode": "500061",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "17.4156",
+      "longitude": "78.5099"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Ajith Kumar Keetha"
+    },
+    "servesCuisine": ["Indian", "Telugu", "Hyderabadi", "South Indian", "North Indian", "Multi-Cuisine"],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "450",
+      "bestRating": "5"
+    },
+    "sameAs": [
+      "https://wa.me/919849027131"
+    ]
+  }
+  </script>
+
+  <!-- Google Analytics (Replace G-XXXXXXXXXX with your GA4 Measurement ID) -->
+  <!-- Get your ID at: https://analytics.google.com → Admin → Data Streams → Web -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
 
   <!-- Google Fonts: Cinzel Decorative, Marcellus, Playfair Display & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +87,12 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <img src="assets/images/archana_logo_emblem.png" alt="Loading..." class="preloader-logo" />
+    <span class="preloader-text">ARCHANA CATERERS</span>
+  </div>
 
   <!-- TOP ANNOUNCEMENT / CONTACT BAR -->
   <aside class="top-bar" aria-label="Quick Contact Bar">
@@ -198,13 +265,13 @@
         <div class="about-grid">
           <div class="about-image-collage">
             <div class="collage-item collage-1">
-              <img src="assets/images/grand_banquet_hall.jpg" alt="Grand Banquet Hall Setup" />
+              <img src="assets/images/grand_banquet_hall.jpg" alt="Grand Banquet Hall Setup" loading="lazy" />
             </div>
             <div class="collage-item collage-2">
-              <img src="assets/images/thali_feast.jpg" alt="Traditional South Indian Thali" />
+              <img src="assets/images/thali_feast.jpg" alt="Traditional South Indian Thali" loading="lazy" />
             </div>
             <div class="collage-item collage-3">
-              <img src="assets/images/white_chef_brigade.jpg" alt="Archana Master Chef Team" />
+              <img src="assets/images/white_chef_brigade.jpg" alt="Archana Master Chef Team" loading="lazy" />
             </div>
             <div class="experience-badge">
               <span class="exp-years">25+</span>
@@ -292,7 +359,7 @@
           <!-- Service 1: Weddings & Receptions -->
           <div class="service-card">
             <div class="service-img-wrap">
-              <img src="assets/images/buffet_service.jpg" alt="Wedding Catering Services" />
+              <img src="assets/images/buffet_service.jpg" alt="Wedding Catering Services" loading="lazy" />
               <span class="service-badge"><i class="fa-solid fa-heart"></i> Most Popular</span>
             </div>
             <div class="service-body">
@@ -311,7 +378,7 @@
           <!-- Service 2: Traditional Ceremonies -->
           <div class="service-card">
             <div class="service-img-wrap">
-              <img src="assets/images/thali_feast.jpg" alt="Traditional South Indian Ceremonies" />
+              <img src="assets/images/thali_feast.jpg" alt="Traditional South Indian Ceremonies" loading="lazy" />
               <span class="service-badge"><i class="fa-solid fa-om"></i> Traditional</span>
             </div>
             <div class="service-body">
@@ -330,7 +397,7 @@
           <!-- Service 3: Corporate Events -->
           <div class="service-card">
             <div class="service-img-wrap">
-              <img src="assets/images/gourmet_salad_display.jpg" alt="Corporate Event Catering" />
+              <img src="assets/images/gourmet_salad_display.jpg" alt="Corporate Event Catering" loading="lazy" />
             </div>
             <div class="service-body">
               <div class="service-icon-box"><i class="fa-solid fa-briefcase"></i></div>
@@ -348,7 +415,7 @@
           <!-- Service 4: Birthdays & Anniversaries -->
           <div class="service-card">
             <div class="service-img-wrap">
-              <img src="assets/images/traditional_snacks.jpg" alt="Birthdays and Family Parties" />
+              <img src="assets/images/traditional_snacks.jpg" alt="Birthdays and Family Parties" loading="lazy" />
             </div>
             <div class="service-body">
               <div class="service-icon-box"><i class="fa-solid fa-cake-candles"></i></div>
@@ -366,7 +433,7 @@
           <!-- Service 5: Traditional South Indian Breakfast -->
           <div class="service-card">
             <div class="service-img-wrap">
-              <img src="assets/images/brochure_page_9.png" alt="South Indian Breakfast Menu" />
+              <img src="assets/images/brochure_page_9.png" alt="South Indian Breakfast Menu" loading="lazy" />
             </div>
             <div class="service-body">
               <div class="service-icon-box"><i class="fa-solid fa-mug-hot"></i></div>
@@ -384,7 +451,7 @@
           <!-- Service 6: Live Stalls & Multi-Cuisine -->
           <div class="service-card">
             <div class="service-img-wrap">
-              <img src="assets/images/live_chinese_counter.jpg" alt="Live Stalls Catering" />
+              <img src="assets/images/live_chinese_counter.jpg" alt="Live Stalls Catering" loading="lazy" />
             </div>
             <div class="service-body">
               <div class="service-icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
@@ -1376,7 +1443,7 @@
     <div class="container footer-container">
       <div class="footer-col brand-col">
         <div class="footer-logo">
-          <img src="assets/images/archana_logo_emblem.png" alt="Archana Caterers Logo" class="footer-emblem" />
+          <img src="assets/images/archana_logo_emblem.png" alt="Archana Caterers Logo" class="footer-emblem" loading="lazy" />
           <div>
             <h3>Archana <span class="caterers-tag">CATERERS</span></h3>
             <span class="footer-tagline">delicious food... unforgettable moments...</span>
